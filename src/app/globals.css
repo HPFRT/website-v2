@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  /* -- Primary -- */
+  --color-midnight:    #120101;   /* deep dark red (almost black) */
+  --color-brand-red:   #560000;   /* dark red from logo */
+  --color-gold:        #E59D01;   /* gold from logo */
+
+  /* -- Neutrals -- */
+  --color-white:       #FAFAFA;
+  --color-off-white:   #F5F0F0;   /* warmer off-white */
+  --color-grey-100:    #E5DDDD;
+  --color-grey-400:    #8A7A7A;
+  --color-grey-700:    #3A2A2A;
+
+  /* -- Functional -- */
+  --color-surface:     var(--color-white);
+  --color-text:        var(--color-midnight);
+  --color-text-muted:  var(--color-grey-400);
+  --color-accent:      var(--color-brand-red);
+  --color-highlight:   var(--color-gold);
+}
+
+@theme inline {
+  --color-midnight: var(--color-midnight);
+  --color-brand-red: var(--color-brand-red);
+  --color-gold: var(--color-gold);
+  --color-white: var(--color-white);
+  --color-off-white: var(--color-off-white);
+  --color-grey-100: var(--color-grey-100);
+  --color-grey-400: var(--color-grey-400);
+  --color-grey-700: var(--color-grey-700);
+  
+  --color-surface: var(--color-surface);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-accent: var(--color-accent);
+  --color-highlight: var(--color-highlight);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
