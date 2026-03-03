@@ -9,29 +9,6 @@ import Timeline from "@/components/Timeline";
 import Gallery from "@/components/Gallery";
 import CTABand from "@/components/CTABand";
 
-const ourValues = [
-  {
-    title: "Safety & Human-Centric Design",
-    description: "As the only human-rated flight team at USC, the pilot is our primary constraint and responsibility. We approach structural integrity, ergonomics, and flight dynamics with the seriousness required when a human life is in the cockpit."
-  },
-  {
-    title: "First-Principles Engineering",
-    description: "We aren't designing to meet the rubric of an annual college competition. Our only constraint is physics. We are pursuing a world record, which means we have the freedom—and the burden—to design our aircraft from the ground up."
-  },
-  {
-    title: "Cross-Disciplinary Integration",
-    description: "A human-powered aircraft cannot be solved by aerodynamicists alone. We rely on a tight integration of lightweight structures, exercise physiology, control systems, and custom flight simulation to close the design loop."
-  },
-  {
-    title: "Rigorous Analysis & Testing",
-    description: "We follow a strict, industry-standard design cycle. From early conceptual sizing to CFD analysis, sub-scale RC flight testing, and pilot ergometer trials, every decision must be backed by verifiable data before manufacturing begins."
-  },
-  {
-    title: "Audacious Execution",
-    description: "We are attempting to break an endurance record that has stood since MIT's Daedalus flight in 1988. It requires immense technical dedication, but we believe in taking on projects that genuinely push the boundaries of student engineering."
-  }
-];
-
 export default function Home() {
   return (
     <>
@@ -133,45 +110,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Our Values Section */}
-      <section className="py-32 md:py-48 bg-off-white">
-        <div className="container mx-auto px-6 md:px-12">
-          <SectionLabel>Our Values</SectionLabel>
-          <div className="mt-24 flex flex-col gap-24 md:gap-32 max-w-5xl mx-auto">
-            {ourValues.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="flex flex-col md:flex-row gap-6 md:gap-16 items-start"
-              >
-                <div className="text-4xl md:text-5xl font-display font-bold text-accent/30 shrink-0 md:w-24 pt-1">
-                  {(i + 1).toString().padStart(2, "0")}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-3xl md:text-4xl font-display font-bold text-text mb-6 leading-tight text-balance">
-                    {item.title}
-                  </h3>
-                  <p className="text-lg md:text-xl text-text-muted leading-relaxed font-light">
-                    {item.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Stats Band */}
       <section className="py-32 bg-midnight text-white">
         <div className="container mx-auto px-6 md:px-12">
+          <div className="mb-20 text-center flex flex-col items-center">
+            <span className="text-accent font-mono font-bold text-xs tracking-[0.2em] uppercase mb-4 block">
+              [ The Record to Beat ]
+            </span>
+            <h2 className="text-3xl md:text-5xl font-display font-bold">MIT Daedalus</h2>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-16 md:gap-8 justify-items-center text-center">
-            <StatCounter value={1988} label="Year of the record" />
+            <StatCounter value={1988} label="Year established" />
             <StatCounter value={71} suffix=" mi" label="Distance across Aegean Sea" />
-            <StatCounter value={200} prefix="~" suffix=" W" label="Sustained human power" />
-            <StatCounter value={1} suffix="st" label="Human-rated team at USC" />
+            <StatCounter value={69} suffix=" lbs" label="Aircraft empty weight" />
+            <StatCounter value={200} prefix="" suffix=" W" label="Sustained pilot power" />
           </div>
         </div>
       </section>

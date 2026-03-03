@@ -53,10 +53,8 @@ export default function Footer() {
             </h4>
             <div className="flex gap-4">
               {[
-                { icon: Instagram, href: "#", label: "Instagram" },
                 { icon: Linkedin, href: "https://www.linkedin.com/company/hpfrt-usc", label: "LinkedIn" },
-                { icon: ExternalLink, href: "https://engage.usc.edu/hpfrt/", label: "EngageSC" },
-                { icon: Mail, href: "mailto:hpfrt@usc.edu", label: "Email" },
+                { icon: Mail, href: "mailto:hpfrteam@gmail.com", label: "Email" },
               ].map((social) => (
                 <motion.a
                   key={social.label}

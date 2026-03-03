@@ -20,8 +20,37 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Human-Powered Flight Research Team | USC",
-  description: "The founding mission of the Human-Powered Flight Research Team is to beat the endurance world record of human-powered flight.",
+  metadataBase: new URL("https://hpfrt.com/"),
+  title: {
+    default: "Human-Powered Flight Research Team | USC",
+    template: "%s | HPFRT USC",
+  },
+  description: "USC's first human-rated aircraft design team. We are building an aircraft to break the endurance world record of human-powered flight set by MIT Daedalus in 1988.",
+  keywords: ["HPFRT", "USC", "Human-Powered Flight", "Aerospace Engineering", "Design Team", "MIT Daedalus", "Viterbi"],
+  authors: [{ name: "Human-Powered Flight Research Team" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://hpfrt.com/",
+    title: "Human-Powered Flight Research Team | USC",
+    description: "USC's first human-rated aircraft design team, building an aircraft to break the endurance world record of human-powered flight.",
+    siteName: "HPFRT USC",
+    images: [{
+      url: "/preview.png",
+      width: 1200,
+      height: 630,
+      alt: "HPFRT Aircraft and Team",
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Human-Powered Flight Research Team | USC",
+    description: "USC's first human-rated aircraft design team, building an aircraft to break the endurance world record of human-powered flight.",
+    images: ["/preview.png"],
+  },
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({

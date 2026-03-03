@@ -26,12 +26,22 @@ const timelineEvents = [
     description: "Founded at USC by undergraduate aerospace engineers David Moeller Sztajnbok, Nicholas Lototsky, and Jonah Colagross with the singular goal of breaking the endurance record.",
   },
   {
-    year: "2025",
-    title: "Quarter-Scale RC Flight",
-    description: "Target for the completion and first flight of our 25-foot wingspan RC test aircraft to validate aerodynamics and stability before full-scale manufacturing.",
+    year: "2024",
+    title: "Redbull Flugtag",
+    description: "Our engineered entry for the 2024 Redbull Flugtag in Tampa, FL. An exercise in rapid prototyping, creative aerodynamics, and structural survival.",
   },
   {
-    year: "2025+",
+    year: "2025",
+    title: "HATB Testbed Flight",
+    description: "Development and flight testing of the Human-Powered Avionics Testbed (HATB), a 10 ft wingspan aircraft for rigorously testing data acquisition and telemetry.",
+  },
+  {
+    year: "2026",
+    title: "Quarter-Scale RC Flight",
+    description: "Target for the completion and first flight of Project Hercules, our 25-foot wingspan RC test aircraft to validate aerodynamics and stability before full-scale manufacturing.",
+  },
+  {
+    year: "2026+",
     title: "Full-Scale Development",
     description: "The next chapter: building the 100+ ft wingspan human-powered aircraft to sustain flight for over 4 hours and challenge the Daedalus record.",
   },
@@ -60,7 +70,7 @@ export default function Timeline() {
               const isEven = i % 2 === 0;
               return (
                 <div
-                  key={event.year}
+                  key={event.title}
                   className={`relative flex items-center md:justify-between ${
                     isEven ? "flex-row-reverse md:flex-row" : "flex-row-reverse md:flex-row-reverse"
                   }`}

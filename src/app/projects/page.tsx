@@ -3,43 +3,39 @@
 import SectionLabel from "@/components/SectionLabel";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Wrench } from "lucide-react";
 
 const phases = [
   {
-    title: "Quarter-Scale RC Test Aircraft",
-    number: "Phase 01",
-    description: "A 25-foot wingspan remote-controlled model—the largest ever built at USC. This phase validates aerodynamic design, stability margins, and testing infrastructure before we risk a human pilot in the full-scale build.",
-    tags: ["2024-2025", "Aerodynamics", "Flight Testing", "Manufacturing"],
-    imageUrl: "https://images.unsplash.com/photo-1559060017-445fb9722f2a?q=80&w=1200&auto=format&fit=crop",
+    title: "Project Hercules (1/4-scale)",
+    number: "Project 01",
+    description: "Quarter-scale human-powered aircraft technology demonstrator. Designed to validate aerodynamic performance, low-speed handling characteristics, and control surface authority prior to full-scale fabrication.",
+    tags: ["Aerodynamics", "Flight Testing", "Demonstrator"],
+    imageUrl: "",
   },
   {
-    title: "Full-Scale Aircraft Development",
-    number: "Phase 02",
-    description: "The primary vehicle: a 100+ ft wingspan aircraft designed to sustain flight for over 4 hours. Engineered at the extreme bleeding edge of weight and aerodynamic efficiency using carbon fiber, Kevlar, and Mylar film.",
-    tags: ["Summer 2025+", "Structures", "Composites", "Human Power"],
-    imageUrl: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1200&auto=format&fit=crop",
+    title: "HATB - Human-Powered Avionics Testbed",
+    number: "Project 02",
+    description: "A 10 ft wingspan testbed aircraft specifically engineered for our quarter-scale avionics suite. Allows us to rigorously test data acquisition, telemetry, and flight-test methodology without risking the primary airframe.",
+    tags: ["Avionics", "Telemetry", "Testbed"],
+    imageUrl: "/hatb.jpg",
+    imageClassName: "object-[center_20%]",
+    imageScale: 1.35,
   },
 ];
 
 const supportingPrograms = [
   {
-    title: "Ergometer Testing & Physiology",
-    description: "Rigorous studies measuring pilot power output, endurance, heart rate, and oxygen consumption. Critical for understanding how long a pilot can sustain the ~200W of continuous power needed for flight.",
-    tags: ["Physiology", "Data Analysis", "Athletics"],
-    imageUrl: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop",
+    title: "Composite Tube Oven",
+    description: "Design and fabrication of a custom PID-temperature-controlled oven. Essential for properly curing the carbon fiber composite tubes that will make up the main structural elements of the full-scale aircraft.",
+    tags: ["Manufacturing", "Composites", "Controls"],
+    imageUrl: "/oven.jpg",
   },
   {
-    title: "Flight Simulator Development",
-    description: "A custom-built simulator to train cyclist-pilots in the unique handling characteristics of a human-powered aircraft, which are extremely slow, light, and sensitive to wind.",
-    tags: ["Software", "Simulation", "Training"],
-    imageUrl: "https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Human Factors Research",
-    description: "Safety-critical design ensuring the pilot can operate the aircraft under physical strain. Includes cockpit ergonomics, visibility, emergency egress, and fatigue management.",
-    tags: ["Human Factors", "Safety", "Ergonomics"],
-    imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
+    title: "Redbull Flugtag 2024",
+    description: "Our engineered entry for the 2024 Redbull Flugtag in Tampa, FL, developed in partnership with a local film producer. An exercise in rapid prototyping, creative aerodynamics, and structural survival.",
+    tags: ["Prototyping", "Design", "Outreach"],
+    imageUrl: "/2.webp",
   },
 ];
 
@@ -54,7 +50,7 @@ export default function ProjectsPage() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   return (
-    <div className="pt-40 pb-32 min-h-screen bg-surface" ref={containerRef}>
+    <div className="pt-40 min-h-screen bg-surface" ref={containerRef}>
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,16 +58,16 @@ export default function ProjectsPage() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl"
         >
-          <SectionLabel>The Technical Program</SectionLabel>
+          <SectionLabel>Research & Development</SectionLabel>
           <h1 className="text-5xl md:text-8xl font-display font-bold text-text mb-8 tracking-tight text-balance leading-[0.9]">
-            Engineering the Impossible.
+            Hardware in the loop.
           </h1>
           <p className="text-xl md:text-2xl text-text-muted leading-relaxed font-light mb-32 max-w-2xl">
-            We don&apos;t build generic drones. We run an industry-style design-analysis-test cycle across multiple extreme disciplines to build a human-rated aircraft capable of breaking a world record.
+            We follow a rigorous design-analysis-test cycle. Explore the active airframes, testbeds, and manufacturing systems currently under development by the team.
           </p>
         </motion.div>
 
-        {/* Cinematic Development Phases */}
+        {/* Primary Airframes */}
         <div className="mb-48 flex flex-col gap-32">
           {phases.map((phase, index) => {
             const isEven = index % 2 === 0;
@@ -85,16 +81,27 @@ export default function ProjectsPage() {
                 className={`flex flex-col lg:flex-row gap-12 lg:gap-24 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}
               >
                 {/* Huge Image Container */}
-                <div className="w-full lg:w-3/5 relative aspect-[4/3] rounded-3xl overflow-hidden group">
+                <div className="w-full lg:w-3/5 relative aspect-[4/3] rounded-3xl overflow-hidden group bg-off-white">
                   <motion.div 
                     className="absolute inset-0 z-10 bg-midnight/20 group-hover:bg-transparent transition-colors duration-700" 
                   />
-                  <motion.img
-                    style={{ y: isEven ? y1 : y2, scale: 1.15 }}
-                    src={phase.imageUrl}
-                    alt={phase.title}
-                    className="absolute inset-0 w-full h-full object-cover origin-center"
-                  />
+                  {phase.imageUrl ? (
+                    <motion.img
+                      style={{ y: isEven ? y1 : y2, scale: phase.imageScale || 1.15 }}
+                      src={phase.imageUrl}
+                      alt={phase.title}
+                      className={`absolute inset-0 w-full h-full object-cover origin-center ${phase.imageClassName || ''}`}
+                    />
+                  ) : (
+                    <motion.div 
+                      style={{ y: isEven ? y1 : y2, scale: 1.15 }}
+                      className="absolute inset-0 w-full h-full flex flex-col items-center justify-center text-grey-400 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat opacity-80 mix-blend-multiply"
+                    >
+                      <Wrench size={48} className="mb-4 opacity-50" />
+                      <span className="font-mono text-sm tracking-widest uppercase font-bold">WIP_ASSET_PENDING</span>
+                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-black/5 pointer-events-none" />
+                    </motion.div>
+                  )}
                 </div>
 
                 {/* Text Content */}
@@ -126,55 +133,86 @@ export default function ProjectsPage() {
           })}
         </div>
 
-        {/* Supporting Programs Grid */}
-        <div className="relative">
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-grey-100 to-transparent" />
+        {/* Manufacturing & Testbeds Section */}
+        <div className="relative w-screen relative -ml-[50vw] left-1/2 bg-[#050505] text-white pt-32 pb-32 mt-32 overflow-hidden">
+          {/* Schematic background pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="pt-32 mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-text">
-              Supporting Programs
-            </h2>
-          </motion.div>
+          <div className="container mx-auto px-6 md:px-12 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8"
+            >
+              <div>
+                <span className="text-accent font-mono text-xs tracking-[0.2em] uppercase mb-4 block">
+                  [ Specialized Hardware ]
+                </span>
+                <h2 className="text-4xl md:text-6xl font-display font-bold text-white tracking-tight">
+                  Manufacturing & Testbeds
+                </h2>
+              </div>
+              <p className="text-white/40 font-mono text-xs tracking-widest uppercase">
+                STATUS: ACTIVE_DEVELOPMENT
+              </p>
+            </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {supportingPrograms.map((program, i) => (
-              <motion.div
-                key={program.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: i * 0.15, duration: 0.8, ease: "easeOut" }}
-                className="group flex flex-col bg-surface hover:bg-off-white transition-colors duration-500 rounded-3xl p-8 border border-grey-100/50 hover:border-transparent cursor-pointer"
-              >
-                <div className="w-16 h-16 rounded-2xl bg-midnight text-white flex items-center justify-center mb-8 group-hover:bg-accent transition-colors duration-500 shadow-xl">
-                  <span className="font-display font-bold text-2xl">{i + 1}</span>
-                </div>
-                
-                <h3 className="text-2xl font-display font-bold text-text mb-4 group-hover:text-accent transition-colors">
-                  {program.title}
-                </h3>
-                
-                <p className="text-text-muted leading-relaxed font-light mb-8 flex-1">
-                  {program.description}
-                </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {supportingPrograms.map((program, i) => (
+                <motion.div
+                  key={program.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: i * 0.15, duration: 0.8, ease: "easeOut" }}
+                  className="group relative flex flex-col bg-[#0a0a0a] border border-white/10 hover:border-white/30 transition-colors duration-500 overflow-hidden cursor-pointer"
+                >
+                  {/* Schematic corners */}
+                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white/20 group-hover:border-accent transition-colors duration-500 z-20" />
+                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-white/20 group-hover:border-accent transition-colors duration-500 z-20" />
 
-                <div className="flex items-center justify-between mt-auto pt-8 border-t border-grey-100/50">
-                  <div className="flex flex-wrap gap-2">
-                    {program.tags.slice(0, 2).map(tag => (
-                      <span key={tag} className="text-[10px] font-bold tracking-widest uppercase text-grey-400">
-                        {tag}
-                      </span>
-                    ))}
+                  {/* Image section */}
+                  <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-white/5">
+                    <motion.div 
+                      className="absolute inset-0 z-10 bg-black/40 group-hover:bg-transparent transition-colors duration-700" 
+                    />
+                    <img
+                      src={program.imageUrl}
+                      alt={program.title}
+                      className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                    />
+                    
+                    {/* Floating index number */}
+                    <div className="absolute top-4 left-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 border border-white/10 text-white font-mono text-xs tracking-widest">
+                      T_{String(i + 1).padStart(2, '0')}
+                    </div>
                   </div>
-                  <ArrowUpRight className="text-grey-400 group-hover:text-accent transition-colors" size={20} />
-                </div>
-              </motion.div>
-            ))}
+                  
+                  {/* Content section */}
+                  <div className="p-8 flex flex-col flex-1">
+                    <h3 className="text-2xl font-display font-bold text-white mb-4 group-hover:text-accent transition-colors">
+                      {program.title}
+                    </h3>
+                    
+                    <p className="text-white/60 leading-relaxed font-light mb-8 flex-1">
+                      {program.description}
+                    </p>
+
+                    <div className="flex items-center justify-between pt-6 border-t border-white/10 mt-auto">
+                      <div className="flex flex-wrap gap-2">
+                        {program.tags.map(tag => (
+                          <span key={tag} className="text-[10px] font-mono tracking-widest uppercase text-white/40">
+                            /{tag}
+                          </span>
+                        ))}
+                      </div>
+                      <ArrowUpRight className="text-white/20 group-hover:text-accent group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300" size={20} />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

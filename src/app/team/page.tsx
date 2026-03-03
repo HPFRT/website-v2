@@ -6,46 +6,42 @@ import { motion } from "framer-motion";
 const executiveBoard = [
   {
     name: "David Sztajnbok",
-    role: "President / Co-Founder",
-  },
-  {
-    name: "Nicholas Lototsky",
-    role: "Vice President / Co-Founder",
+    role: "Program Manager / Co-Founder",
+    linkedinUrl: "https://www.linkedin.com/in/davidsztajnbok/",
+    email: "sztajnbo@usc.edu",
   },
   {
     name: "Jonah Colagross",
-    role: "Secretary / Co-Founder",
+    role: "Vehicle Design / Co-Founder",
+    linkedinUrl: "https://www.linkedin.com/in/jonahcolagross/",
+    email: "colagros@usc.edu",
+  },
+  {
+    name: "Nicholas Lototsky",
+    role: "Vehicle Performance / Co-Founder",
+    linkedinUrl: "https://www.linkedin.com/in/nicholas-lototsky/",
+    email: "nlototsk@usc.edu",
   },
   {
     name: "Marc Palicki",
-    role: "Executive Board",
+    role: "Mechanical Systems",
+    linkedinUrl: "https://www.linkedin.com/in/marc-anthony-palicki-5bba79210/",
+    email: "palicki@usc.edu",
   }
 ];
 
 const responsibleEngineers = [
   {
-    name: "John Doe",
-    role: "Lead Aerodynamicist",
+    name: "Noelle Lehrman",
+    role: "Responsible Engineer",
+    linkedinUrl: "https://www.linkedin.com/in/noelle-lehrman/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_sent_invitations%3BiK3Bvv3lTt6KgoDK46bQ2Q%3D%3D",
+    email: "nlehrman@usc.edu",
   },
   {
-    name: "Jane Smith",
-    role: "Structures Lead",
-  },
-  {
-    name: "Alex Johnson",
-    role: "Human Factors",
-  },
-  {
-    name: "Emily Chen",
-    role: "Ergometer Lead",
-  },
-  {
-    name: "Marcus Cole",
-    role: "Simulations Lead",
-  },
-  {
-    name: "Sarah Jenkins",
-    role: "Manufacturing",
+    name: "Elro Starr",
+    role: "Responsible Engineer",
+    linkedinUrl: "https://www.linkedin.com/in/elynor-starr/",
+    email: "elrostarr@gmail.com",
   }
 ];
 
@@ -53,6 +49,7 @@ const facultyAdvisors = [
   {
     name: "Dr. Saakar Byahut",
     role: "Faculty Advisor",
+    email: "byahut@usc.edu",
   }
 ];
 
@@ -60,7 +57,7 @@ function SectionHeading({ children, number }: { children: React.ReactNode; numbe
   return (
     <div className="text-center mb-16">
       <span className="text-white/40 text-sm tracking-[0.2em] uppercase font-medium">
-        {number && <span className="text-accent mr-4">{number}</span>}
+        {number && <span className="text-accent font-bold mr-4">{number}</span>}
         [ {children} ]
       </span>
     </div>

@@ -22,7 +22,7 @@ export default function CTABand() {
             Are you a USC student eager to take to the skies?
           </h2>
 
-          <Link href="/contact" className="group">
+          <a href="https://forms.gle/arguHL66bRyB5QaH6" target="_blank" rel="noopener noreferrer" className="group">
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -32,7 +32,7 @@ export default function CTABand() {
               <span className="relative z-10">Join the Team</span>
               <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />
             </motion.div>
-          </Link>
+          </a>
         </motion.div>
       </div>
     </section>

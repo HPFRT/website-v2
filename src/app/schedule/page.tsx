@@ -17,7 +17,7 @@ export default function SchedulePage() {
             The flight plan.
           </h1>
           <p className="text-xl text-text-muted max-w-2xl mb-12 leading-relaxed font-light">
-            Building a record-breaking aircraft requires relentless cadence. Join us for meetings, build sessions, and major milestones.
+            Join us for our weekly meetings, build sessions, and flight tests. See you there!
           </p>
         </motion.div>
 
