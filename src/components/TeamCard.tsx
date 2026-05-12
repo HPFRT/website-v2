@@ -3,7 +3,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Linkedin, Plus, Mail, X } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface TeamCardProps {
   name: string;
@@ -16,6 +17,11 @@ interface TeamCardProps {
 
 export default function TeamCard({ name, role, imageUrl, linkedinUrl, email, delay = 0 }: TeamCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
@@ -67,75 +73,78 @@ export default function TeamCard({ name, role, imageUrl, linkedinUrl, email, del
       </motion.div>
 
       {/* Contact Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
-            >
-              <div className="bg-[#080808] border border-white/20 rounded-lg p-8 max-w-md w-full pointer-events-auto relative shadow-2xl">
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"
-                >
-                  <X size={20} />
-                </button>
-                
-                <h3 className="text-white font-display text-2xl font-bold uppercase mb-2">{name}</h3>
-                <p className="text-accent font-mono text-xs font-bold tracking-widest uppercase mb-8">{role}</p>
-                
-                <div className="flex flex-col gap-4">
-                  {linkedinUrl && (
-                    <motion.a
-                      href={linkedinUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-accent/50 transition-colors rounded-lg group"
-                    >
-                      <div className="w-12 h-12 shrink-0 rounded-lg bg-accent/20 flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                        <Linkedin size={24} className="text-accent" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-white/50 text-xs uppercase tracking-widest mb-1">LinkedIn</p>
-                        <p className="text-white font-medium text-sm truncate">{linkedinUrl.replace('https://www.linkedin.com/in/', '').replace('https://linkedin.com/in/', '').replace('/', '')}</p>
-                      </div>
-                    </motion.a>
-                  )}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isModalOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsModalOpen(false)}
+                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none"
+              >
+                <div className="bg-[#080808] border border-white/20 rounded-lg p-8 max-w-md w-full pointer-events-auto relative shadow-2xl">
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"
+                  >
+                    <X size={20} />
+                  </button>
                   
-                  {email && (
-                    <motion.a
-                      href={`mailto:${email}`}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-accent/50 transition-colors rounded-lg group"
-                    >
-                      <div className="w-12 h-12 shrink-0 rounded-lg bg-accent/20 flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                        <Mail size={24} className="text-accent" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-white/50 text-xs uppercase tracking-widest mb-1">Email</p>
-                        <p className="text-white font-medium text-sm truncate">{email}</p>
-                      </div>
-                    </motion.a>
-                  )}
+                  <h3 className="text-white font-display text-2xl font-bold uppercase mb-2">{name}</h3>
+                  <p className="text-accent font-mono text-xs font-bold tracking-widest uppercase mb-8">{role}</p>
+                  
+                  <div className="flex flex-col gap-4">
+                    {linkedinUrl && (
+                      <motion.a
+                        href={linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-accent/50 transition-colors rounded-lg group"
+                      >
+                        <div className="w-12 h-12 shrink-0 rounded-lg bg-accent/20 flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                          <Linkedin size={24} className="text-accent" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-white/50 text-xs uppercase tracking-widest mb-1">LinkedIn</p>
+                          <p className="text-white font-medium text-sm truncate">{linkedinUrl.replace('https://www.linkedin.com/in/', '').replace('https://linkedin.com/in/', '').replace('/', '')}</p>
+                        </div>
+                      </motion.a>
+                    )}
+                    
+                    {email && (
+                      <motion.a
+                        href={`mailto:${email}`}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-accent/50 transition-colors rounded-lg group"
+                      >
+                        <div className="w-12 h-12 shrink-0 rounded-lg bg-accent/20 flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                          <Mail size={24} className="text-accent" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-white/50 text-xs uppercase tracking-widest mb-1">Email</p>
+                          <p className="text-white font-medium text-sm truncate">{email}</p>
+                        </div>
+                      </motion.a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   );
 }
